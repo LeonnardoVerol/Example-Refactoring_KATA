@@ -21,7 +21,7 @@ namespace csharp
 
 				IncreaseSpecialItemQuality(i);
 
-				DecreaseSellIn(i);
+				Items[i].DecreaseSellInByOne();
 
 				ChangeExpiredItensQuality(i);
 			}
@@ -43,14 +43,6 @@ namespace csharp
 					Items[i].IncreaseQualityByOne();
 				}
 			}
-		}
-
-		private void DecreaseSellIn(int i)
-		{
-			if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
-				return;
-
-			Items[i].SellIn -= 1;
 		}
 
 		private void IncreaseSpecialItemQuality(int i)
@@ -113,6 +105,7 @@ namespace csharp
 	class Sulfuras : Item
 	{
 		public override void DecreaseQualityByOne() { /* Do Nothing */ }
+		public override void DecreaseSellInByOne() { /* Do Nothing */ }
 	}
 
 	class Backstage : Item

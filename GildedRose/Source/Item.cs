@@ -14,7 +14,7 @@
 			return this.Name + ", " + this.SellIn + ", " + this.Quality;
 		}
 
-		public void IncreaseQualityByOne()
+		public virtual void IncreaseQualityByOne()
 		{
 			if(this.Quality < Item.MAX_QUALITY)
 			{
@@ -28,6 +28,11 @@
 			{
 				this.Quality--;
 			}
+		}
+
+		public virtual void DecreaseSellInByOne()
+		{
+			this.SellIn--;
 		}
 	}
 }
