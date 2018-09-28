@@ -50,23 +50,9 @@ namespace Tennis
 		}
 
 		[Test]
-		public void CheckTennisGame1()
+		public void CheckTennisGame()
 		{
-			var game = new TennisGame1("player1", "player2");
-			CheckAllScores(game);
-		}
-
-		[Test]
-		public void CheckTennisGame2()
-		{
-			var game = new TennisGame2("player1", "player2");
-			CheckAllScores(game);
-		}
-
-		[Test]
-		public void CheckTennisGame3()
-		{
-			var game = new TennisGame3("player1", "player2");
+			var game = new TennisGame("player1", "player2");
 			CheckAllScores(game);
 		}
 
@@ -89,23 +75,9 @@ namespace Tennis
 	public class ExampleGameTennisTest
 	{
 		[Test]
-		public void CheckGame1()
+		public void CheckGame()
 		{
-			var game = new TennisGame1("player1", "player2");
-			RealisticTennisGame(game);
-		}
-
-		[Test]
-		public void CheckGame2()
-		{
-			var game = new TennisGame2("player1", "player2");
-			RealisticTennisGame(game);
-		}
-
-		[Test]
-		public void CheckGame3()
-		{
-			var game = new TennisGame3("player1", "player2");
+			var game = new TennisGame("player1", "player2");
 			RealisticTennisGame(game);
 		}
 
