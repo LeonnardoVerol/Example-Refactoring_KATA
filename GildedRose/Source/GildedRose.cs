@@ -7,43 +7,15 @@ namespace csharp
 		IList<Item> Items;
 		public GildedRose(IList<Item> Items)
 		{
-			this.Items = Items;
+			this.Items = ItemFactory.UpdateItensType(Items);
 		}
 
 		public void UpdateQuality()
 		{
-			UpdateItensType();
-
 			for (var i = 0; i < Items.Count; i++)
 			{
 				Items[i].DecreaseSellIn();
-
-				Items[i].DecreaseQuality();
-
-				Items[i].IncreaseQuality();
-			}
-		}
-
-		private void UpdateItensType()
-		{
-			for (var i = 0; i < Items.Count; i++)
-			{
-				if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-				{
-					Items[i] = new Backstage { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality };
-				}
-				else if (Items[i].Name == "Aged Brie")
-				{
-					Items[i] = new AgedBrie { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
-				}
-				else if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
-				{
-					Items[i] = new Sulfuras { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
-				}
-				else
-				{
-					Items[i] = new Common { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
-				}
+				Items[i].UpdateQuality();
 			}
 		}
 	}
@@ -101,6 +73,36 @@ namespace csharp
 			{
 				base.IncreaseQuality();
 			}
+		}
+	}
+
+	class ItemFactory
+	{
+		public static IList<Item> UpdateItensType(IList<Item> Items)
+		{
+			IList<Item> updatedItemListWithClasses = Items;
+
+			for (var i = 0; i < Items.Count; i++)
+			{
+				if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+				{
+					updatedItemListWithClasses[i] = new Backstage { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality };
+				}
+				else if (Items[i].Name == "Aged Brie")
+				{
+					updatedItemListWithClasses[i] = new AgedBrie { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
+				}
+				else if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
+				{
+					updatedItemListWithClasses[i] = new Sulfuras { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
+				}
+				else
+				{
+					updatedItemListWithClasses[i] = new Common { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
+				}
+			}
+
+			return updatedItemListWithClasses;
 		}
 	}
 }
