@@ -17,11 +17,11 @@ namespace csharp
 
 			for (var i = 0; i < Items.Count; i++)
 			{
-				Items[i].DecreaseQualityByOne();
+				Items[i].DecreaseQuality();
 
 				IncreaseSpecialItemQuality(i);
 
-				Items[i].DecreaseSellInByOne();
+				Items[i].DecreaseSellIn();
 
 				ChangeExpiredItensQuality(i);
 			}
@@ -31,7 +31,7 @@ namespace csharp
 		{
 			if (Items[i].SellIn < 0)
 			{
-				Items[i].DecreaseQualityByOne();
+				Items[i].DecreaseQuality();
 
 				if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
 				{
@@ -40,7 +40,7 @@ namespace csharp
 
 				if (Items[i].Name == "Aged Brie")
 				{
-					Items[i].IncreaseQualityByOne();
+					Items[i].IncreaseQuality();
 				}
 			}
 		}
@@ -49,21 +49,21 @@ namespace csharp
 		{
 			if (Items[i].Name == "Aged Brie")
 			{
-				Items[i].IncreaseQualityByOne();
+				Items[i].IncreaseQuality();
 			}
 
 			if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
 			{
-				Items[i].IncreaseQualityByOne();
+				Items[i].IncreaseQuality();
 
 				if (Items[i].SellIn < 11)
 				{
-					Items[i].IncreaseQualityByOne();
+					Items[i].IncreaseQuality();
 				}
 
 				if (Items[i].SellIn < 6)
 				{
-					Items[i].IncreaseQualityByOne();
+					Items[i].IncreaseQuality();
 				}
 			}
 		}
@@ -99,17 +99,17 @@ namespace csharp
 
 	class AgedBrie : Item
 	{
-		public override void DecreaseQualityByOne() { /* Do Nothing */ }
+		public override void DecreaseQuality() { /* Do Nothing */ }
 	}
 
 	class Sulfuras : Item
 	{
-		public override void DecreaseQualityByOne() { /* Do Nothing */ }
-		public override void DecreaseSellInByOne() { /* Do Nothing */ }
+		public override void DecreaseQuality() { /* Do Nothing */ }
+		public override void DecreaseSellIn() { /* Do Nothing */ }
 	}
 
 	class Backstage : Item
 	{
-		public override void DecreaseQualityByOne() { /* Do Nothing */ }
+		public override void DecreaseQuality() { /* Do Nothing */ }
 	}
 }
