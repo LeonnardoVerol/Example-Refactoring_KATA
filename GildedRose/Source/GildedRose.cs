@@ -55,10 +55,7 @@ namespace csharp
 				// +1 aged brie ( o dobro)
 				if (Items[i].Name == "Aged Brie")
 				{
-					if (Items[i].Quality < 50)
-					{
-						Items[i].Quality = Items[i].Quality + 1;
-					}
+					IncreaseItemQuality(i);
 				}
 			}
 		}
@@ -73,31 +70,32 @@ namespace csharp
 
 		private void IncreaseSpecialItemQuality(int i)
 		{
-			if (Items[i].Name == "Aged Brie" || Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+			if (Items[i].Name == "Aged Brie")
 			{
-				if (Items[i].Quality < 50)
+				IncreaseItemQuality(i);
+			}
+
+			if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+			{
+				IncreaseItemQuality(i);
+
+				if (Items[i].SellIn < 11)
 				{
-					Items[i].Quality = Items[i].Quality + 1;
-
-					if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-					{
-						if (Items[i].SellIn < 11)
-						{
-							if (Items[i].Quality < 50)
-							{
-								Items[i].Quality = Items[i].Quality + 1;
-							}
-						}
-
-						if (Items[i].SellIn < 6)
-						{
-							if (Items[i].Quality < 50)
-							{
-								Items[i].Quality = Items[i].Quality + 1;
-							}
-						}
-					}
+					IncreaseItemQuality(i);
 				}
+
+				if (Items[i].SellIn < 6)
+				{
+					IncreaseItemQuality(i);
+				}
+			}
+		}
+
+		private void IncreaseItemQuality(int i)
+		{
+			if (Items[i].Quality < 50)
+			{
+				Items[i].Quality += 1;
 			}
 		}
 
