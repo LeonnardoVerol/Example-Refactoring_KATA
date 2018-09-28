@@ -17,31 +17,11 @@ namespace csharp
 
 			for (var i = 0; i < Items.Count; i++)
 			{
+				Items[i].DecreaseSellIn();
+
 				Items[i].DecreaseQuality();
 
 				Items[i].IncreaseQuality();
-
-				Items[i].DecreaseSellIn();
-
-				ChangeExpiredItensQuality(i);
-			}
-		}
-
-		private void ChangeExpiredItensQuality(int i)
-		{
-			if (Items[i].SellIn < 0)
-			{
-				Items[i].DecreaseQuality();
-
-				if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-				{
-					Items[i].Quality = 0;
-				}
-
-				if (Items[i].Name == "Aged Brie")
-				{
-					Items[i].IncreaseQuality();
-				}
 			}
 		}
 
@@ -72,11 +52,31 @@ namespace csharp
 	class Common : Item
 	{
 		public override void IncreaseQuality() { /* Do Nothing */ }
+
+		public override void DecreaseQuality()
+		{
+			base.DecreaseQuality();
+
+			if(this.SellIn < 0)
+			{
+				base.DecreaseQuality();
+			}
+		}
 	}
 
 	class AgedBrie : Item
 	{
 		public override void DecreaseQuality() { /* Do Nothing */ }
+
+		public override void IncreaseQuality()
+		{
+			base.IncreaseQuality();
+
+			if (this.SellIn < 0)
+			{
+				base.IncreaseQuality();
+			}
+		}
 	}
 
 	class Sulfuras : Item
@@ -91,6 +91,12 @@ namespace csharp
 
 		public override void IncreaseQuality()
 		{
+			if(this.SellIn < 0)
+			{
+				this.Quality = 0;
+				return;
+			}
+
 			base.IncreaseQuality();
 
 			if (this.SellIn < 11)
