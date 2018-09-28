@@ -138,5 +138,21 @@ namespace csharp
 
 			Assert.AreEqual(Items[0].Quality, 24);
 		}
+
+		[Test]
+		public void Sulfuras_ShouldNotChange_QualityNorSellIn()
+		{
+			IList<Item> Items = new List<Item> {
+				new Item {Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80}
+			};
+			GildedRose app = new GildedRose(Items);
+
+			for (var i = 0; i < 2; i++)
+			{
+				app.UpdateQuality();
+			}
+
+			Assert.IsTrue(Items[0].Quality == 80 && Items[0].SellIn == 0);
+		}
 	}
 }
