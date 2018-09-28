@@ -13,5 +13,13 @@
 			this.player1Name = player1Name;
 			this.player2Name = player2Name;
 		}
+
+		public void WonPoint(string playerName)
+		{
+			if (playerName == "player1")
+				this.player1point++;
+			else
+				this.player2point++;
+		}
 	}
 }
