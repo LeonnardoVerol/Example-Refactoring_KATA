@@ -19,7 +19,7 @@ namespace csharp
 			{
 				Items[i].DecreaseQuality();
 
-				IncreaseSpecialItemQuality(i);
+				Items[i].IncreaseQuality();
 
 				Items[i].DecreaseSellIn();
 
@@ -39,29 +39,6 @@ namespace csharp
 				}
 
 				if (Items[i].Name == "Aged Brie")
-				{
-					Items[i].IncreaseQuality();
-				}
-			}
-		}
-
-		private void IncreaseSpecialItemQuality(int i)
-		{
-			if (Items[i].Name == "Aged Brie")
-			{
-				Items[i].IncreaseQuality();
-			}
-
-			if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-			{
-				Items[i].IncreaseQuality();
-
-				if (Items[i].SellIn < 11)
-				{
-					Items[i].IncreaseQuality();
-				}
-
-				if (Items[i].SellIn < 6)
 				{
 					Items[i].IncreaseQuality();
 				}
@@ -94,7 +71,7 @@ namespace csharp
 
 	class Common : Item
 	{
-
+		public override void IncreaseQuality() { /* Do Nothing */ }
 	}
 
 	class AgedBrie : Item
@@ -111,5 +88,20 @@ namespace csharp
 	class Backstage : Item
 	{
 		public override void DecreaseQuality() { /* Do Nothing */ }
+
+		public override void IncreaseQuality()
+		{
+			base.IncreaseQuality();
+
+			if (this.SellIn < 11)
+			{
+				base.IncreaseQuality();
+			}
+
+			if (this.SellIn < 6)
+			{
+				base.IncreaseQuality();
+			}
+		}
 	}
 }
