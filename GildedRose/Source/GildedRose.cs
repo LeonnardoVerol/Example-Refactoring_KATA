@@ -37,7 +37,7 @@ namespace csharp
 				
 				if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
 				{
-					Items[i].Quality = Items[i].Quality - Items[i].Quality;
+					Items[i].Quality = 0;
 				}
 
 				// +1 aged brie ( o dobro)
@@ -50,10 +50,11 @@ namespace csharp
 
 		private void DecreaseSellIn(int i)
 		{
-			if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-			{
-				Items[i].SellIn = Items[i].SellIn - 1;
-			}
+			if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
+				return;
+
+			Items[i].SellIn -= 1;
+			
 		}
 
 		private void IncreaseSpecialItemQuality(int i)
