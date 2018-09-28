@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace csharp
 {
@@ -102,16 +103,20 @@ namespace csharp
 
 		private void DecreaseCommonItemQuality(int i)
 		{
-			if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+			if (IsCommonItem(i) && Items[i].Quality > 0)
 			{
-				if (Items[i].Quality > 0)
-				{
-					if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-					{
-						Items[i].Quality = Items[i].Quality - 1;
-					}
-				}
+				Items[i].Quality -= 1;
 			}
+		}
+
+		private bool IsCommonItem(int i)
+		{
+			if (Items[i].Name == "Aged Brie"
+			|| Items[i].Name == "Backstage passes to a TAFKAL80ETC concert"
+			|| Items[i].Name == "Sulfuras, Hand of Ragnaros")
+				return false;
+
+			return true;
 		}
 	}
 }
