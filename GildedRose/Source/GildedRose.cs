@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace csharp
 {
@@ -51,9 +50,7 @@ namespace csharp
 
 	class Common : Item
 	{
-		public override void IncreaseQuality() { /* Do Nothing */ }
-
-		public override void DecreaseQuality()
+		public override void UpdateQuality()
 		{
 			base.DecreaseQuality();
 
@@ -66,9 +63,7 @@ namespace csharp
 
 	class AgedBrie : Item
 	{
-		public override void DecreaseQuality() { /* Do Nothing */ }
-
-		public override void IncreaseQuality()
+		public override void UpdateQuality()
 		{
 			base.IncreaseQuality();
 
@@ -81,15 +76,13 @@ namespace csharp
 
 	class Sulfuras : Item
 	{
-		public override void DecreaseQuality() { /* Do Nothing */ }
+		public override void UpdateQuality() { /* Do Nothing */ }
 		public override void DecreaseSellIn() { /* Do Nothing */ }
 	}
 
 	class Backstage : Item
 	{
-		public override void DecreaseQuality() { /* Do Nothing */ }
-
-		public override void IncreaseQuality()
+		public override void UpdateQuality()
 		{
 			if(this.SellIn < 0)
 			{

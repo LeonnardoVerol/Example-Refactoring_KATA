@@ -1,4 +1,6 @@
-﻿namespace csharp
+﻿using System;
+
+namespace csharp
 {
 	public class Item
 	{
@@ -33,6 +35,11 @@
 		public virtual void DecreaseSellIn()
 		{
 			this.SellIn--;
+		}
+
+		public virtual void UpdateQuality()
+		{
+			throw new NotImplementedException();
 		}
 	}
 }
