@@ -15,16 +15,12 @@ namespace csharp
 		{
 			for (var i = 0; i < Items.Count; i++)
 			{
-				// Quality -1 geral
 				DecreaseCommonItemQuality(i);
 
-				// Quality +1 e backstage especial
 				IncreaseSpecialItemQuality(i);
 
-				// sellin -1 geral
 				DecreaseSellIn(i);
 
-				// Expired Itens
 				ChangeExpiredItensQuality(i);
 			}
 		}
@@ -40,7 +36,6 @@ namespace csharp
 					Items[i].Quality = 0;
 				}
 
-				// +1 aged brie ( o dobro)
 				if (Items[i].Name == "Aged Brie")
 				{
 					Items[i].IncreaseQualityByOne();
@@ -54,7 +49,6 @@ namespace csharp
 				return;
 
 			Items[i].SellIn -= 1;
-			
 		}
 
 		private void IncreaseSpecialItemQuality(int i)
