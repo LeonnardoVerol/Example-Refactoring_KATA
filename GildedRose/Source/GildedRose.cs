@@ -17,15 +17,13 @@ namespace csharp
 				// Quality -1 geral
 				DecreaseCommonItemQuality(i);
 
-				//Quality +1 e backstage especial
+				// Quality +1 e backstage especial
 				IncreaseSpecialItemQuality(i);
 
 				// sellin -1 geral
-				if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-				{
-					Items[i].SellIn = Items[i].SellIn - 1;
-				}
+				DecreaseSellIn(i);
 
+				// Expired Itens
 				if (Items[i].SellIn < 0)
 				{
 					if (Items[i].Name != "Aged Brie")
@@ -56,6 +54,14 @@ namespace csharp
 						}
 					}
 				}
+			}
+		}
+
+		private void DecreaseSellIn(int i)
+		{
+			if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+			{
+				Items[i].SellIn = Items[i].SellIn - 1;
 			}
 		}
 
