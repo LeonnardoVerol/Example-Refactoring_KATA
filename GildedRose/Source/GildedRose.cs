@@ -13,9 +13,11 @@ namespace csharp
 
 		public void UpdateQuality()
 		{
+			UpdateItensType();
+
 			for (var i = 0; i < Items.Count; i++)
 			{
-				DecreaseCommonItemQuality(i);
+				Items[i].DecreaseQualityByOne();
 
 				IncreaseSpecialItemQuality(i);
 
@@ -29,8 +31,8 @@ namespace csharp
 		{
 			if (Items[i].SellIn < 0)
 			{
-				DecreaseCommonItemQuality(i);
-				
+				Items[i].DecreaseQualityByOne();
+
 				if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
 				{
 					Items[i].Quality = 0;
@@ -74,22 +76,47 @@ namespace csharp
 			}
 		}
 
-		private void DecreaseCommonItemQuality(int i)
+		private void UpdateItensType()
 		{
-			if (IsCommonItem(i))
+			for (var i = 0; i < Items.Count; i++)
 			{
-				Items[i].DecreaseQualityByOne();
+				if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
+				{
+					Items[i] = new Backstage { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality };
+				}
+				else if (Items[i].Name == "Aged Brie")
+				{
+					Items[i] = new AgedBrie { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
+				}
+				else if (Items[i].Name == "Sulfuras, Hand of Ragnaros")
+				{
+					Items[i] = new Sulfuras { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
+				}
+				else
+				{
+					Items[i] = new Common { Name = Items[i].Name, SellIn = Items[i].SellIn, Quality = Items[i].Quality }; ;
+				}
 			}
 		}
+	}
 
-		private bool IsCommonItem(int i)
-		{
-			if (Items[i].Name == "Aged Brie"
-			|| Items[i].Name == "Backstage passes to a TAFKAL80ETC concert"
-			|| Items[i].Name == "Sulfuras, Hand of Ragnaros")
-				return false;
+	class Common : Item
+	{
 
-			return true;
-		}
+	}
+
+	class AgedBrie : Item
+	{
+		public override void DecreaseQualityByOne() { /* Do Nothing */ }
+	}
+
+	class Sulfuras : Item
+	{
+		public override void DecreaseQualityByOne() { /* Do Nothing */ }
+	}
+
+	class Backstage : Item
+	{
+		public override void DecreaseQualityByOne() { /* Do Nothing */ }
 	}
 }
