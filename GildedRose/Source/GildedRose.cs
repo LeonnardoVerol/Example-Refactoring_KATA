@@ -82,9 +82,9 @@ namespace csharp
 
 		private void DecreaseCommonItemQuality(int i)
 		{
-			if (IsCommonItem(i) && Items[i].Quality > 0)
+			if (IsCommonItem(i))
 			{
-				Items[i].Quality -= 1;
+				Items[i].DecreaseQualityByOne();
 			}
 		}
 
