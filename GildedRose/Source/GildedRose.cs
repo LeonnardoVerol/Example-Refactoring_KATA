@@ -43,7 +43,7 @@ namespace csharp
 				// +1 aged brie ( o dobro)
 				if (Items[i].Name == "Aged Brie")
 				{
-					IncreaseItemQuality(i);
+					Items[i].IncreaseQualityByOne();
 				}
 			}
 		}
@@ -61,30 +61,22 @@ namespace csharp
 		{
 			if (Items[i].Name == "Aged Brie")
 			{
-				IncreaseItemQuality(i);
+				Items[i].IncreaseQualityByOne();
 			}
 
 			if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
 			{
-				IncreaseItemQuality(i);
+				Items[i].IncreaseQualityByOne();
 
 				if (Items[i].SellIn < 11)
 				{
-					IncreaseItemQuality(i);
+					Items[i].IncreaseQualityByOne();
 				}
 
 				if (Items[i].SellIn < 6)
 				{
-					IncreaseItemQuality(i);
+					Items[i].IncreaseQualityByOne();
 				}
-			}
-		}
-
-		private void IncreaseItemQuality(int i)
-		{
-			if (Items[i].Quality < 50)
-			{
-				Items[i].Quality += 1;
 			}
 		}
 
